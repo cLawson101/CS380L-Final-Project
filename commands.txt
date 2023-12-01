@@ -1,0 +1,49 @@
+To start the servers with their respective commands:
+
+ext4:
+qemu-system-x86_64  \
+  -machine accel=kvm,type=q35 \
+  -cpu host \
+  -m 2G \
+  -nographic \
+  -device virtio-net-pci,netdev=net0 \
+  -netdev user,id=net0,hostfwd=tcp::2222-:22 \
+  -drive if=virtio,format=qcow2,file=ext4.img \
+  -drive if=virtio,format=raw,file=seed.img
+
+f2fs:
+qemu-system-x86_64  \
+  -machine accel=kvm,type=q35 \
+  -cpu host \
+  -m 2G \
+  -nographic \
+  -device virtio-net-pci,netdev=net0 \
+  -netdev user,id=net0,hostfwd=tcp::2222-:22 \
+  -drive if=virtio,format=qcow2,file=f2fs.img \
+  -drive if=virtio,format=raw,file=seed.img
+
+XFS:
+qemu-system-x86_64  \
+  -machine accel=kvm,type=q35 \
+  -cpu host \
+  -m 2G \
+  -nographic \
+  -device virtio-net-pci,netdev=net0 \
+  -netdev user,id=net0,hostfwd=tcp::2222-:22 \
+  -drive if=virtio,format=qcow2,file=XFS.img \
+  -drive if=virtio,format=raw,file=seed.img
+
+ZFS:
+qemu-system-x86_64  \
+  -machine accel=kvm,type=q35 \
+  -cpu host \
+  -m 2G \
+  -nographic \
+  -device virtio-net-pci,netdev=net0 \
+  -netdev user,id=net0,hostfwd=tcp::2222-:22 \
+  -drive if=virtio,format=qcow2,file=ZFS.img \
+  -drive if=virtio,format=raw,file=seed.img
+
+
+Connect through:
+ssh -o "StrictHostKeyChecking no" -p 2222 ubuntu@0.0.0.0
